@@ -1,15 +1,19 @@
 package main
 
-import "os/exec"
+import (
+	"os"
+	"os/exec"
+)
 
 var cmdChain = []*exec.Cmd{
-	exec.Command("lib/synonyms"),
-	exec.Command("lib/sprinkle"),
-	exec.Command("lib/coolify"),
-	exec.Command("lib/domainify"),
-	exec.Command("lib/available"),
+	exec.Command("synonyms"),
+	exec.Command("sprinkle"),
+	exec.Command("coolify"),
+	exec.Command("domainify"),
+	exec.Command("available"),
 }
 
 func main() {
-
+	cmdChain[0].Stdin = os.Stdin
+	cmdChain[len(cmdChain)-1].Stdout = os.Stdout
 }
