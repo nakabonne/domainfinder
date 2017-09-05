@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 	"os/exec"
 )
@@ -16,4 +17,14 @@ var cmdChain = []*exec.Cmd{
 func main() {
 	cmdChain[0].Stdin = os.Stdin
 	cmdChain[len(cmdChain)-1].Stdout = os.Stdout
+
+	for i := 0; i < len(cmdChain)-1; i++ {
+		thisCmd := cmdChain[i]
+		nextCmd := cmdChain[i+1]
+		stdout, err := thisCmd.StdoutPipe()
+		if err != nil {
+			log.Panicln(err)
+		}
+		nextCmd.Stdin = stdout
+	}
 }
