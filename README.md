@@ -2,6 +2,8 @@
 A command line tool that will output the domain candidate when you enter the word you want to use.
 It works by combining five small programs.
 
+![result](https://github.com/ryonakao/domainfinder/blob/media_for_demo/media/domainfinder.gif)
+
 # Instllation
 
 1,Please install the five small programs
